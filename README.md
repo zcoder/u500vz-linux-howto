@@ -100,10 +100,19 @@ since the first cylinder is needed for the MBR and bootloader.
 # mount -t sysfs none /mnt/sys
 # chroot /mnt /bin/bash
 </pre>
-9. There are virtual memory settings for SSD. Edit sysctl.conf:
+9. There are virtual memory settings for SSD. Edit /etc/sysctl.conf:
 <pre>
 vm.swappiness = 1
 vm.vfs_cache_pressure = 25
 vm.dirty_ratio = 40
 vm.dirty_background_ratio = 3
 </pre>
+10. Edit /etc/fstab
+11. Edit /etc/rc.conf
+12. Edit /etc/rc.d/net
+13. Build linux kernel
+14. Configure lilo
+15. Configure ethernet
+16. Reboot
+17. Ports
+18. 
