@@ -1,9 +1,6 @@
 Crux 3.0 on Asus Zenbook u500vz/ux51vz
 ======================================
 
-Intro
------
-
 TBD
 
 Hardware
