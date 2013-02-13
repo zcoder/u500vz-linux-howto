@@ -60,10 +60,12 @@ Installation
 mklabel msdos
 quit
 </pre>
-3. Make with fdisk partition scheme (Fist cylinder of first partition is 2):
+3. Make with fdisk the partition scheme. For the first partition you need to choose cylinder number 2 for the start,
+since the first cylinder is needed for the MBR and bootloader.
 <pre>
 # fdisk -H 224 -S 56 /dev/sda
 # fdisk -l /dev/sda
+... TBD ...
 # dd if=/dev/sda of=/dev/sdb count=1
 </pre>
 4. Create software raid:
@@ -80,7 +82,7 @@ quit
 # mkfs.ext4 /dev/md3
 # mkswap /dev/md1
 </pre>
-6. Mount new root:
+6. Mount the new root:
 <pre>
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md2 /mnt
 # mkdir /mnt/boot
@@ -90,7 +92,7 @@ quit
 <pre>
 # setup
 </pre>
-8. Chroot:
+8. Make chroot:
 <pre>
 # mount --bind /dev /mnt/dev
 # mount --bind /tmp /mnt/tmp
