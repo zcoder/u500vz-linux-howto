@@ -125,8 +125,8 @@ vm.dirty_background_ratio = 3
 boot=/dev/md0
 raid-extra-boot=auto
 image=/boot/vmlinuz
-    append="root=/dev/md1 rootfstype=ext4 md=1,0,5,0,/dev/sda2,/dev/sdb2"
-    readonly
+    append="root=/dev/md1 rootfstype=ext4 md=1,0,5,0,/dev/sda2,/dev/sdb2 quiet"
+    read-only
     label=CRUX
 </code></pre>
 
