@@ -169,7 +169,6 @@ esac
 ### Linux kernel and Lilo
 
 1. Build linux kernel with [config](config):
-
 <pre>
 # cd /usr/src/linux-3.6.11
 # make menuconfig
