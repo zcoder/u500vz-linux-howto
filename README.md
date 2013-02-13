@@ -34,11 +34,11 @@ Status
 Processor:   Works
 Chipset:     Works
 Memory:      Works
-Graphic:     Not Tested
+Graphic:     Works
 Storage:     Works
 Card Reader: Not Tested
 Camera:      Not Tested
-Networking:  Not Tested
+Networking:  Works, BT Not Tested
 Audio:       Not Tested
 Interfaces:  Not Tested
 </pre>
@@ -51,4 +51,46 @@ TBD
 Installation
 ------------
 
-TBD
+1. Remove all /dev/md* with `mdadm -S /dev/mdX'
+2. Clear GUID partition table  of /dev/sd[ab] if exists with:
+<pre>
+# parted /dev/sdX
+mklabel msdos
+quit
+</pre>
+3. Make with fdisk partition scheme:
+<pre>
+# fdisk -l /dev/sda
+# fdisk -l /dev/sdb
+</pre>
+4. Create software raid:
+<pre>
+# mdadm --create /dev/md0 --level 1 --raid-devices 2 /dev/sda1 /dev/sdb1 --metadata 0.9
+# mdadm --create /dev/md1 --level 0 --raid-devices 3 /dev/sda4 /dev/sdb2 /dev/sdb3 --metadata 0.9
+</pre>
+5. Create file systems:
+<pre>
+# mkfs.ext4 /dev/md0
+# mkfs.ext4 /dev/md1
+# mkfs.ext4 /dev/sda3
+# mkswap /dev/sda2
+</pre>
+6. Mount new root:
+<pre>
+# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/sda3 /mnt
+# mkdir /mnt/boot
+# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
+</pre>
+7. Setup Crux (all core + all xorg + some packages from opt)
+<pre>
+# setup
+</pre>
+8. Chroot:
+<pre>
+# mount --bind /dev /mnt/dev
+# mount --bind /tmp /mnt/tmp
+# mount -t proc proc /mnt/proc
+# mount -t sysfs none /mnt/sys
+# chroot /mnt /bin/bash
+</pre>
+9. 
