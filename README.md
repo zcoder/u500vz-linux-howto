@@ -68,24 +68,24 @@ quit
 </pre>
 4. Create software raid:
 <pre>
-# mdadm -C /dev/md/boot -c 128 -n 2 -e 0.9 -l 1 /dev/sda1 /dev/sdb1
-# mdadm -C /dev/md/swap -c 128 -n 2 -e 0.9 -l 0 /dev/sda2 /deb/sdb2
-# mdadm -C /dev/md/root -c 128 -n 2 -e 0.9 -l 0 /dev/sda3 /dev/sdb3
-# mdadm -C /dev/md/home -c 128 -n 2 -e 0.9 -l 0 /dev/sda4 /dev/sdb4
+# mdadm -C /dev/md0 -c 128 -n 2 -e 0.9 -l 1 /dev/sda1 /dev/sdb1
+# mdadm -C /dev/md1 -c 128 -n 2 -e 0.9 -l 0 /dev/sda2 /deb/sdb2
+# mdadm -C /dev/md2 -c 128 -n 2 -e 0.9 -l 0 /dev/sda3 /dev/sdb3
+# mdadm -C /dev/md3 -c 128 -n 2 -e 0.9 -l 0 /dev/sda4 /dev/sdb4
 </pre>
 5. Create file systems:
 <pre>
-# mkfs.ext4 /dev/md/boot
-# mkfs.ext4 /dev/md/root
-# mkfs.ext4 /dev/md/home
-# mkswap /dev/md/swap
+# mkfs.ext4 /dev/md0
+# mkfs.ext4 /dev/md2
+# mkfs.ext4 /dev/md3
+# mkswap /dev/md1
 </pre>
 6. Mount new root:
 <pre>
-# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md/root /mnt
+# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md2 /mnt
 # mkdir /mnt/boot
-# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md/boot /mnt/boot
-# swapon /dev/md/swap
+# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
+# swapon /dev/md1
 </pre>
 7. Setup Crux. Note: install mdadm and don't install xorg-video-* except xorg-video-intel.
 <pre>
