@@ -120,15 +120,16 @@ vm.dirty_background_ratio = 3
 
 1. Build linux kernel
 2. Configure lilo. Edit /etc/lilo.conf:
-<pre>
-lba32
+
+<pre><code>lba32
 boot=/dev/md0
 raid-extra-boot=auto
 image=/boot/vmlinuz
     append="root=/dev/md1 rootfstype=ext4 md=1,0,5,0,/dev/sda2,/dev/sdb2"
     readonly
     label=CRUX
-</pre>
+</code></pre>
+
 3. Run lilo:
 <pre>
 # lilo
