@@ -153,11 +153,13 @@ restart)
 	echo "usage: $0 [start|stop|restart]"
 	;;
 esac
-</code></pre>
+</code>
+</pre>
 
 ### Linux kernel and Lilo
 
 1. Build linux kernel with [config](config):
+
 <pre>
 # cd /usr/src/linux-3.6.11
 # make menuconfig
@@ -166,6 +168,7 @@ esac
 # cp arch/x86/boot/bzImage /boot/vmlinuz
 # cp System.map /boot
 </pre>
+
 2. Edit /etc/lilo.conf:
 
 <pre><code>lba32
