@@ -98,7 +98,7 @@ quit
 # mount -t sysfs none /mnt/sys
 # chroot /mnt /bin/bash
 </pre>
-9. Edit sysctl.conf:
+9. There are virtual memory settings for SSD. Edit sysctl.conf:
 <pre>
 vm.swappiness = 1
 vm.vfs_cache_pressure = 25
