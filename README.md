@@ -89,7 +89,7 @@ quit
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md/boot /mnt/boot
 # swapon /dev/md/swap
 </pre>
-7. Setup Crux (all core + all xorg + some packages from opt)
+7. Setup Crux. Notes: install mdadm and don't install xorg-video-* except xorg-video-intel.
 <pre>
 # setup
 </pre>
