@@ -182,11 +182,12 @@ esac
 
 <pre><code>lba32
 boot=/dev/md0
+vga=normal
 raid-extra-boot=auto
 image=/boot/vmlinuz
+    label=CRUX
     append="root=/dev/md2 rootfstype=ext4 md=2,0,5,0,/dev/sda3,/dev/sdb3 quiet"
     read-only
-    label=CRUX
 </code></pre>
 
 3. Run lilo:
