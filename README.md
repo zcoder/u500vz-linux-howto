@@ -91,7 +91,7 @@ since the first cylinder is needed for the MBR and bootloader.
 # mkdir /mnt/boot
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
 </pre>
-3. Setup Crux. Note: install mdadm and don't install xorg-xf86-video-* except xorg-xf86-video-intel.
+3. Setup Crux. Note: install opt/mdadm, opt/wpa_supplicant and don't install xorg/xorg-xf86-video-* except xorg/xorg-xf86-video-intel.
 <pre>
 # setup
 </pre>
