@@ -1,5 +1,5 @@
-Crux 3.0 on Asus Zenbook u500vz
-===============================
+Crux 3.0 on Asus Zenbook u500vz/ux51vz
+======================================
 
 Intro
 -----
@@ -60,13 +60,11 @@ Installation
 mklabel msdos
 quit
 </pre>
-3. Make with fdisk partition scheme:
+3. Make with fdisk partition scheme (Fist cylinder of first partition is 2):
 <pre>
-# fdisk /dev/sda
+# fdisk -H 224 -S 56 /dev/sda
 # fdisk -l /dev/sda
-# sfdisk -d /dev/sda > /tmp/ptbl.txt
-# sed -i -e 's/sda/sdb/g' /tmp/ptbl.txt
-# sfdisk /dev/sdb < /tmp/ptbl.txt
+# dd if=/dev/sda of=/dev/sdb count=1
 </pre>
 4. Create software raid:
 <pre>
@@ -101,4 +99,10 @@ quit
 # mount -t sysfs none /mnt/sys
 # chroot /mnt /bin/bash
 </pre>
-9. 
+9. Edit sysctl.conf:
+<pre>
+vm.swappiness = 1
+vm.vfs_cache_pressure = 25
+vm.dirty_ratio = 40
+vm.dirty_background_ratio = 3
+</pre>
