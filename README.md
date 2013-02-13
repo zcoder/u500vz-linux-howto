@@ -138,7 +138,8 @@ image=/boot/vmlinuz
 # lilo -M /dev/sda
 # lilo -M /dev/sdb
 </pre>
-4. Reboot
+
+### Reboot
 
 Postinstallation
 ================
