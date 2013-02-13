@@ -15,7 +15,7 @@ Chipset:     Intel® Chief River Chipset HM77
 Memory:      8 GB
 Display:     16:9 HD with IPS FHD (1920x1080) LED Backlight anti-glare
 Graphic:     NVIDIA® GeForce® GT 650M 2GB GDDR5 VRAM
-Storage:     2 x 256GB SSD RAID0 Technology
+Storage:     2 x 256GB SSD A-Data XM11 (RAID0 Technology)
 Card Reader: 2-in-1 card reader (SD/MMC)
 Camera:	     HD 720p CMOS with Array Microphone
 Wifi & BT:   Intel Advanced-N 6235(dual band, 2x2 Wi-Fi/BT combo HMC module)
