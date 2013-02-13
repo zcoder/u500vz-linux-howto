@@ -53,6 +53,8 @@ TBD
 Installation
 ------------
 
+### Partitions
+
 1. Remove all /dev/md* with `mdadm -S /dev/mdX'
 2. Clear GUID partition table  of /dev/sd[ab] if exists with:
 <pre>
@@ -75,24 +77,27 @@ since the first cylinder is needed for the MBR and bootloader.
 # mdadm -C /dev/md2 -c 128 -n 2 -e 0.9 -l 0 /dev/sda3 /dev/sdb3
 # mdadm -C /dev/md3 -c 128 -n 2 -e 0.9 -l 0 /dev/sda4 /dev/sdb4
 </pre>
-5. Create file systems:
+
+### Setup Crux
+
+1. Create file systems:
 <pre>
 # mkfs.ext4 /dev/md0
 # mkfs.ext4 /dev/md2
 # mkfs.ext4 /dev/md3
 # mkswap /dev/md1
 </pre>
-6. Mount the new root:
+2. Mount the new root:
 <pre>
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md2 /mnt
 # mkdir /mnt/boot
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
 </pre>
-7. Setup Crux. Note: install mdadm and don't install xorg-video-* except xorg-video-intel.
+3. Setup Crux. Note: install mdadm and don't install xorg-video-* except xorg-video-intel.
 <pre>
 # setup
 </pre>
-8. Make chroot:
+4. Make chroot:
 <pre>
 # mount --bind /dev /mnt/dev
 # mount --bind /tmp /mnt/tmp
@@ -100,19 +105,37 @@ since the first cylinder is needed for the MBR and bootloader.
 # mount -t sysfs none /mnt/sys
 # chroot /mnt /bin/bash
 </pre>
-9. There are virtual memory settings for SSD. Edit /etc/sysctl.conf:
+
+### Base configuration
+
+1. There are virtual memory settings for SSD. Edit /etc/sysctl.conf:
 <pre>
 vm.swappiness = 1
 vm.vfs_cache_pressure = 25
 vm.dirty_ratio = 40
 vm.dirty_background_ratio = 3
 </pre>
-10. Edit /etc/fstab
-11. Edit /etc/rc.conf
-12. Edit /etc/rc.d/net
-13. Build linux kernel
-14. Configure lilo
-15. Configure ethernet
-16. Reboot
-17. Ports
-18. 
+2. Edit /etc/fstab
+3. Edit /etc/rc.conf
+4. Edit /etc/rc.d/net
+
+### Linux kernel & Lilo
+
+1. Build linux kernel
+2. Configure lilo
+3. Reboot
+
+### Ethernet
+1. Configure ethernet
+
+### Ports
+
+### Wifi
+
+### Graphic
+1. Xorg
+2. NVIDIA
+3. Bumblebee
+4. bbswitch
+
+
