@@ -62,26 +62,32 @@ quit
 </pre>
 3. Make with fdisk partition scheme:
 <pre>
+# fdisk /dev/sda
 # fdisk -l /dev/sda
-# fdisk -l /dev/sdb
+# sfdisk -d /dev/sda > /tmp/ptbl.txt
+# sed -i -e 's/sda/sdb/g' /tmp/ptbl.txt
+# sfdisk /dev/sdb < /tmp/ptbl.txt
 </pre>
 4. Create software raid:
 <pre>
-# mdadm --create /dev/md0 --level 1 --raid-devices 2 /dev/sda1 /dev/sdb1 --metadata 0.9
-# mdadm --create /dev/md1 --level 0 --raid-devices 3 /dev/sda4 /dev/sdb2 /dev/sdb3 --metadata 0.9
+# mdadm -C /dev/md/boot -c 128 -n 2 -e 0.9 -l 1 /dev/sda1 /dev/sdb1
+# mdadm -C /dev/md/swap -c 128 -n 2 -e 0.9 -l 0 /dev/sda2 /deb/sdb2
+# mdadm -C /dev/md/root -c 128 -n 2 -e 0.9 -l 0 /dev/sda3 /dev/sdb3
+# mdadm -C /dev/md/home -c 128 -n 2 -e 0.9 -l 0 /dev/sda4 /dev/sdb4
 </pre>
 5. Create file systems:
 <pre>
-# mkfs.ext4 /dev/md0
-# mkfs.ext4 /dev/md1
-# mkfs.ext4 /dev/sda3
-# mkswap /dev/sda2
+# mkfs.ext4 /dev/md/boot
+# mkfs.ext4 /dev/md/root
+# mkfs.ext4 /dev/md/home
+# mkswap /dev/md/swap
 </pre>
 6. Mount new root:
 <pre>
-# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/sda3 /mnt
+# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md/root /mnt
 # mkdir /mnt/boot
-# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
+# mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md/boot /mnt/boot
+# swapon /dev/md/swap
 </pre>
 7. Setup Crux (all core + all xorg + some packages from opt)
 <pre>
