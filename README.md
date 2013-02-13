@@ -140,6 +140,9 @@ image=/boot/vmlinuz
 </pre>
 4. Reboot
 
+Postinstallation
+================
+
 ### Ethernet
 1. Configure ethernet
 
