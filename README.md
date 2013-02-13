@@ -122,8 +122,23 @@ vm.dirty_background_ratio = 3
 ### Linux kernel & Lilo
 
 1. Build linux kernel
-2. Configure lilo
-3. Reboot
+2. Configure lilo. Edit /etc/lilo.conf:
+<pre>
+lba32
+boot=/dev/md0
+raid-extra-boot=auto
+image=/boot/vmlinuz
+    append="root=/dev/md1 rootfstype=ext4 md=1,0,5,0,/dev/sda2,/dev/sdb2"
+    readonly
+    label=CRUX
+</pre>
+3. Run lilo:
+<pre>
+# lilo
+# lilo -M /dev/sda
+# lilo -M /dev/sdb
+</pre>
+4. Reboot
 
 ### Ethernet
 1. Configure ethernet
