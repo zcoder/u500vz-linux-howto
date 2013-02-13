@@ -185,8 +185,31 @@ Kernel driver: atl1c
 </pre>
 
 ### Ports
+<pre>
+# mv /etc/contrib.rsync{.inactive,}
+# ports -u
+</pre>
+Uncomment contrib in /etc/prt-get.conf
 
 ### Wifi
+
+<pre>
+# prt-get install iw
+</pre>
+If it returns 404, then:
+<pre>
+# cp /etc/pkgmk.conf /tmp
+# echo 'PKGMK_SOURCE_MIRRORS=(http://kernel.org/pub/software/network/iw/)' >> /tmp/pkgmk.conf
+# prt-get install --margs='-cf /tmp/pkgmk.conf' iw
+</pre>
+
+Copy [iwlwifi-6000g2b-6.ucode](http://wireless.kernel.org/en/users/Drivers/iwlwifi?action=AttachFile&do=get&target=iwlwifi-6000g2b-ucode-18.168.6.1.tgz) into /lib/firmware. Then:
+
+<pre>
+# rmmod iwlwifi
+# modprobe iwlwifi
+# ip link set wlan0 up
+</pre>
 
 ### Graphic
 1. Xorg
