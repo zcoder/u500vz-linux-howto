@@ -85,7 +85,6 @@ quit
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md2 /mnt
 # mkdir /mnt/boot
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
-# swapon /dev/md1
 </pre>
 7. Setup Crux. Note: install mdadm and don't install xorg-video-* except xorg-video-intel.
 <pre>
