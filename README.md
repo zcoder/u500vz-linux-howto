@@ -218,8 +218,7 @@ For WPA2:
 
 Edit /etc/rc.d/net
 
-<pre><code>
-...
+<pre><code>...
 start)
         # wifi
         /sbin/ip link set wlan0 up
