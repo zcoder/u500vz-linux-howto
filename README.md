@@ -211,6 +211,27 @@ Copy [iwlwifi-6000g2b-6.ucode](http://wireless.kernel.org/en/users/Drivers/iwlwi
 # ip link set wlan0 up
 </pre>
 
+For WPA2:
+<pre>
+# wpa_passphrase "MySSID" "MyPASS" >> /etc/wpa.conf
+</pre>
+
+Edit /etc/rc.d/net
+
+<pre><code>
+...
+start)
+        # wifi
+        /sbin/ip link set wlan0 up
+        /usr/sbin/wpa_supplicant -B -Dwext -i wlan0 -c /etc/wpa.conf
+        /sbin/dhcpcd -t 10 wlan0
+        ;;
+stop)
+        /sbin/dhcpcd -x
+        /sbin/ip link set wlan0 down
+...
+</code></pre>
+
 ### Graphic
 1. Xorg
 2. NVIDIA
