@@ -95,7 +95,18 @@ since the first cylinder is needed for the MBR and bootloader.
 <pre>
 # setup
 </pre>
-4. Make chroot:
+4. Create /mnt/etc/mdadm.conf:
+<pre>
+DEVICE partitions
+CREATE owner=root group=disk mode=0600 auto=yes
+HOMEHOST <system>
+MAILADDR root
+</pre>
+Add arrays:
+<pre>
+# mdadm --detail --scan >> /mnt/etc/mdadm.conf
+</pre>
+6. Make chroot:
 <pre>
 # mount --bind /dev /mnt/dev
 # mount --bind /tmp /mnt/tmp
@@ -138,7 +149,6 @@ start)
 	/sbin/ip link set lo up
 	# ethernet
 	/sbin/ip link set eth0 up
-	/sbin/dhcpcd -t 10 wlan0
 	;;
 stop)
 	/sbin/ip link set eth0 down
