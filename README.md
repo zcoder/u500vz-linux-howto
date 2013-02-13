@@ -65,11 +65,12 @@ since the first cylinder is needed for the MBR and bootloader.
 # fdisk -H 224 -S 56 /dev/sda
 # fdisk -l /dev/sda
 ... TBD ...
-# dd if=/dev/sda of=/dev/sdb count=1
+# sfdisk -d /dev/sda | sed 's/sda/sdb/g' > /tmp/tbl
+# sfdisk /dev/sdb < /tmp/tbl
 </pre>
 4. Create software raid:
 <pre>
-# mdadm -C /dev/md0 -c 128 -n 2 -e 0.9 -l 1 /dev/sda1 /dev/sdb1
+# mdadm -C /dev/md0 -n 2 -e 0.9 -l 1 /dev/sda1 /dev/sdb1
 # mdadm -C /dev/md1 -c 128 -n 2 -e 0.9 -l 0 /dev/sda2 /deb/sdb2
 # mdadm -C /dev/md2 -c 128 -n 2 -e 0.9 -l 0 /dev/sda3 /dev/sdb3
 # mdadm -C /dev/md3 -c 128 -n 2 -e 0.9 -l 0 /dev/sda4 /dev/sdb4
