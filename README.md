@@ -91,7 +91,7 @@ since the first cylinder is needed for the MBR and bootloader.
 # mkdir /mnt/boot
 # mount -o noatime,nodiratime,discard,errors=remount-ro /dev/md0 /mnt/boot
 </pre>
-3. Setup Crux. Note: install mdadm and don't install xorg-video-* except xorg-video-intel.
+3. Setup Crux. Note: install mdadm and don't install xorg-xf86-video-* except xorg-xf86-video-intel.
 <pre>
 # setup
 </pre>
@@ -106,21 +106,67 @@ since the first cylinder is needed for the MBR and bootloader.
 
 ### Base configuration
 
-1. There are virtual memory settings for SSD. Edit /etc/sysctl.conf:
+1. Set root password.
+2. There are virtual memory settings for SSD. Edit /etc/sysctl.conf:
 <pre>
 vm.swappiness = 1
 vm.vfs_cache_pressure = 25
 vm.dirty_ratio = 40
 vm.dirty_background_ratio = 3
 </pre>
-2. Edit /etc/fstab
-3. Edit /etc/rc.conf
-4. Edit /etc/rc.d/net
+3. Edit /etc/fstab
+<pre>
+devpts                 /dev/pts  devpts    defaults               0      0
+tmpfs                  /tmp      tmpfs     defaults               0      0
+tmpfs                  /var/log  tmpfs     defaults               0      0
+tmpfs                  /var/spool  tmpfs   defaults               0      0
+tmpfs                  /var/tmp  tmpfs     defaults               0      0
+tmpfs                  /dev/shm  tmpfs     defaults               0      0
+/dev/md0               /boot     ext4      noatime,nodiratime,discard,errors=remount-ro 0 1
+/dev/md2               /         ext4      noatime,nodiratime,discard,errors=remount-ro 0 1
+/dev/md3               /home     ext4      noatime,nodiratime,discard,errors=remount-ro 0 1
+/dev/md1               swap      swap      defaults               0      0
+</pre>
+4. Edit /etc/rc.conf
+5. Edit /etc/rc.d/net
 
-### Linux kernel & Lilo
+<pre><code>
+case $1 in
+start)
+    # loopback
+	/sbin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
+	/sbin/ip link set lo up
+	# ethernet
+	/sbin/ip link set eth0 up
+	/sbin/dhcpcd -t 10 wlan0
+	;;
+stop)
+	/sbin/ip link set eth0 down
+	/sbin/ip link set lo down
+	/sbin/ip addr del 127.0.0.1/8 dev lo
+	;;
+restart)
+	$0 stop
+	$0 start
+	;;
+*)
+	echo "usage: $0 [start|stop|restart]"
+	;;
+esac
+</code></pre>
 
-1. Build linux kernel
-2. Configure lilo. Edit /etc/lilo.conf:
+### Linux kernel and Lilo
+
+1. Build linux kernel with [config](config):
+<pre>
+# cd /usr/src/linux-3.6.11
+# make menuconfig
+# make all
+# make modules_install
+# cp arch/x86/boot/bzImage /boot/vmlinuz
+# cp System.map /boot
+</pre>
+2. Edit /etc/lilo.conf:
 
 <pre><code>lba32
 boot=/dev/md0
