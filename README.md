@@ -139,32 +139,7 @@ tmpfs                  /dev/shm  tmpfs     defaults               0      0
 /dev/md1               swap      swap      defaults               0      0
 </pre>
 4. Edit /etc/rc.conf
-5. Edit /etc/rc.d/net
-
-<pre><code>
-case $1 in
-start)
-    # loopback
-	/sbin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
-	/sbin/ip link set lo up
-	# ethernet
-	/sbin/ip link set eth0 up
-	;;
-stop)
-	/sbin/ip link set eth0 down
-	/sbin/ip link set lo down
-	/sbin/ip addr del 127.0.0.1/8 dev lo
-	;;
-restart)
-	$0 stop
-	$0 start
-	;;
-*)
-	echo "usage: $0 [start|stop|restart]"
-	;;
-esac
-</code>
-</pre>
+5. Remove eth0 from /etc/rc.d/net
 
 ### Linux kernel and Lilo
 
@@ -203,7 +178,11 @@ Postinstallation
 ================
 
 ### Ethernet
-1. Configure ethernet
+Kernel driver: atl1c
+<pre>
+# ip link set eth0 up
+# dhcpcd -t 10 eth0
+</pre>
 
 ### Ports
 
