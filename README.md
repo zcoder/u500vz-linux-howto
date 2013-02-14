@@ -64,7 +64,17 @@ since the first cylinder is needed for the MBR and bootloader.
 <pre>
 # fdisk -H 224 -S 56 /dev/sda
 # fdisk -l /dev/sda
-... TBD ...
+Disk /dev/sda: 256.1 GB, 256060514304 bytes, 500118192 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000d53d6
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *       12544      225279      106368   fd  Linux raid autodetect
+/dev/sda2          225792     9156607     4465408   fd  Linux raid autodetect
+/dev/sda3         9157120   134998015    62920448   fd  Linux raid autodetect
+/dev/sda4       134998528   499916799   182459136   fd  Linux raid autodetect
 # sfdisk -d /dev/sda | sed 's/sda/sdb/g' > /tmp/tbl
 # sfdisk /dev/sdb < /tmp/tbl
 </pre>
