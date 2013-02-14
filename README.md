@@ -186,6 +186,11 @@ Kernel driver: atl1c
 
 ### Ports
 <pre>
+# ports -u
+# prt-get depinst fakeroot
+# useradd -r -s /bin/false pkgmk
+# echo 'makecommand sudo -H -u pkgmk fakeroot pkgmk' >> /etc/prt-get.conf
+# chown pkgmk /usr/ports/{distfiles,packages,work}
 # mv /etc/ports/contrib.rsync{.inactive,}
 # cat <<END >/etc/ports/pitman.httpup
 ROOT_DIR=/usr/ports/pitman
@@ -239,7 +244,14 @@ stop)
 ...
 </code></pre>
 
+### Add user
+<pre>
+# useradd -U -m -s /bin/bash <user>
+# passwd <user>
+</pre>
+
 ### Graphic
+
 1. Xorg
 2. NVIDIA
 3. Bumblebee
