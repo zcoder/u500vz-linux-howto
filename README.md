@@ -186,10 +186,14 @@ Kernel driver: atl1c
 
 ### Ports
 <pre>
-# mv /etc/contrib.rsync{.inactive,}
-# ports -u
+# mv /etc/ports/contrib.rsync{.inactive,}
+# cat <<END >/etc/ports/pitman.httpup
+ROOT_DIR=/usr/ports/pitman
+URL=http://raw.github.com/KonstantinLepa/crux-ports/master
+END
 </pre>
-Uncomment contrib in /etc/prt-get.conf
+Add 'prtdir /usr/ports/pitman' to head of /etc/prt-get.conf.
+Uncomment 'prtdir /usr/ports/contrib'. Run 'ports -u'.
 
 ### Wifi
 
@@ -203,8 +207,12 @@ If it returns 404, then:
 # prt-get install --margs='-cf /tmp/pkgmk.conf' iw
 </pre>
 
-Copy [iwlwifi-6000g2b-6.ucode](http://wireless.kernel.org/en/users/Drivers/iwlwifi?action=AttachFile&do=get&target=iwlwifi-6000g2b-ucode-18.168.6.1.tgz) into /lib/firmware. Then:
+Install iwlwifi firmware:
+<pre>
+# prt-get install iwlwifi-6000g2b-ucode
+</pre>
 
+Restart wifi:
 <pre>
 # rmmod iwlwifi
 # modprobe iwlwifi
