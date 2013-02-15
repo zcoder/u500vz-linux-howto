@@ -183,9 +183,11 @@ Kernel driver: atl1c
 <pre>
 # ports -u
 # prt-get depinst fakeroot
-# useradd -r -s /bin/false pkgmk
+# useradd -r -U -s /bin/false pkgmk
 # echo 'makecommand sudo -H -u pkgmk fakeroot pkgmk' >> /etc/prt-get.conf
-# chown pkgmk /usr/ports/{distfiles,packages,work}
+# mkdir /usr/ports/{distfiles,packages,work}
+# chown pkgmk:pkgmk /usr/ports/{distfiles,packages,work}
+# chmod 775 /usr/ports/{distfiles,packages,work}
 # mv /etc/ports/contrib.rsync{.inactive,}
 # cat <<END >/etc/ports/pitman.httpup
 ROOT_DIR=/usr/ports/pitman
@@ -212,15 +214,11 @@ Install iwlwifi firmware:
 # prt-get install iwlwifi-6000g2b-ucode
 </pre>
 
-Restart wifi:
+Restart wifi and set WPA2:
 <pre>
 # rmmod iwlwifi
 # modprobe iwlwifi
 # ip link set wlan0 up
-</pre>
-
-For WPA2:
-<pre>
 # wpa_passphrase "MySSID" "MyPASS" >> /etc/wpa.conf
 </pre>
 
