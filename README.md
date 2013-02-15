@@ -30,7 +30,7 @@ Status
 Preparation
 -----------
 
-TBD
+Change CSM then disable Secure Boot.
 
 Installation
 ------------
@@ -237,7 +237,8 @@ stop)
         /sbin/dhcpcd -x
         /sbin/ip link set wlan0 down
 ...
-</code></pre>
+</code>
+</pre>
 
 ### Add user
 
