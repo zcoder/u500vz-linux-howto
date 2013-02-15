@@ -253,4 +253,8 @@ stop)
 3. Bumblebee
 4. bbswitch
 
+### Misc
+
+[Patch](i915.patch) for 'drm:__gen6_gt_force_wake_mt_get' error. Tested on linux 3.7.8.
+
 
