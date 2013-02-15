@@ -3,45 +3,29 @@ Crux 3.0 on Asus Zenbook u500vz/ux51vz
 
 TBD
 
-Hardware
---------
-
-<pre>
-Processor:   Intel® Core™ i7 3612QM Processor
-Chipset:     Intel® Chief River Chipset HM77
-Memory:      8 GB
-Display:     16:9 HD with IPS FHD (1920x1080) LED Backlight anti-glare
-Graphic:     NVIDIA® GeForce® GT 650M 2GB GDDR5 VRAM
-Storage:     2 x 256GB SSD A-Data XM11 (RAID0 Technology)
-Card Reader: 2-in-1 card reader (SD/MMC)
-Camera:	     HD 720p CMOS with Array Microphone
-Wifi & BT:   Intel Advanced-N 6235(dual band, 2x2 Wi-Fi/BT combo HMC module)
-Ethernet:    Atheros AR8151 Gigabit
-Audio:       Built-in Speakers And Microphone (Additional subwoofer)
-USB ports:   3 x 3.0
-HDMI:        1
-Mini VGA:    1
-</pre>
+---
 
 Status
 ------
-<pre>
-Processor:   Works
-Chipset:     Works
-Memory:      Works
-Graphic:     Works
-Storage:     Works
-Card Reader: Not Tested
-Camera:      Not Tested
-Wifi:        Works
-BT:          Not Tested
-Ethernet:    Works
-Audio:       Not Tested
-USB ports:   Works (as 2.0, 3.0 Not Tested)
-HDMI:        Not Tested
-Mini VGA:    Not Tested
-FN keys:     Not Tested
-</pre>
+
+|Component  |Status  |Description 
+|-----------|--------|---------------------------------------------------------------
+|Processor  |OK      |Intel® Core™ i7 3612QM Processor
+|Chipset    |OK      |Intel® Chief River Chipset HM77
+|Memory     |OK      |8 GB
+|Display    |OK      |16:9 HD with IPS FHD (1920x1080) LED Backlight anti-glare
+|Graphic    |OK      |NVIDIA® GeForce® GT 650M 2GB GDDR5 VRAM
+|Storage    |OK      |2 x 256GB SSD A-Data XM11 (RAID0 Technology)
+|Card Reader|Unknown |2-in-1 card reader (SD/MMC)
+|Camera     |Unknown |HD 720p CMOS with Array Microphone
+|Wifi       |OK      |Intel Advanced-N 6235(dual band, 2x2 Wi-Fi/BT combo HMC module)
+|Bluetooth  |Unknown |Intel Advanced-N 6235(dual band, 2x2 Wi-Fi/BT combo HMC module)
+|Ethernet   |OK      |Atheros AR8151 Gigabit
+|Audio      |Unknown |Built-in Speakers And Microphone (Additional subwoofer)
+|USB 3.0    |OK?     |*Tested as 2.0 only* 
+|HDMI       |Unknown |
+|Mini VGA   |Unknown |
+|FN keys    |Unknown |
 
 Preparation
 -----------
@@ -256,6 +240,7 @@ stop)
 </code></pre>
 
 ### Add user
+
 <pre>
 # useradd -U -m -s /bin/bash <user>
 # passwd <user>
