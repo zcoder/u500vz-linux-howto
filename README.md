@@ -241,7 +241,7 @@ stop)
 ### Add user
 
 <pre>
-# useradd -U -m -s /bin/bash <user>
+# useradd -G pkgmk -U -m -s /bin/bash <user>
 # passwd <user>
 </pre>
 
