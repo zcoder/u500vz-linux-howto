@@ -38,7 +38,7 @@ Installation
 
 ### Partitions
 
-1. Remove all /dev/md* with `mdadm -S /dev/mdX'
+1. Remove all /dev/md\* with 'mdadm -S /dev/mdX'
 2. Clear GUID partition table  of /dev/sd[ab] if exists with:
 <pre>
 # parted /dev/sdX
@@ -157,7 +157,7 @@ vga=normal
 raid-extra-boot=auto
 image=/boot/vmlinuz
     label=CRUX
-    append="root=/dev/md2 rootfstype=ext4 md=2,0,5,0,/dev/sda3,/dev/sdb3 acpi_osi=Linux quiet"
+    append="root=/dev/md2 rootfstype=ext4 md=2,0,5,0,/dev/sda3,/dev/sdb3 acpi_osi=Linux i915.i915_enable_rc6=1 quiet"
     read-only
 </code></pre>
 
