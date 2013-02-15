@@ -26,7 +26,7 @@ Status
 |HDMI       |Unknown |
 |Mini VGA   |Unknown |
 |FN keys    |Unknown |
-|Touchpad   |Unknown |ETPS/2 Elantech Touchpad
+|Touchpad   |OK      |ETPS/2 Elantech Touchpad
 
 Preparation
 -----------
