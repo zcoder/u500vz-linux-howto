@@ -171,7 +171,7 @@ vga=normal
 raid-extra-boot=auto
 image=/boot/vmlinuz
     label=CRUX
-    append="root=/dev/md2 rootfstype=ext4 md=2,0,5,0,/dev/sda3,/dev/sdb3 quiet"
+    append="root=/dev/md2 rootfstype=ext4 md=2,0,5,0,/dev/sda3,/dev/sdb3 acpi_osi=Linux quiet"
     read-only
 </code></pre>
 
