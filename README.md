@@ -1,7 +1,7 @@
 CRUX 3.0 on Asus Zenbook u500vz/ux51vz
 ======================================
 
-The document is my cheat sheet of CRUX installation on the laptop only. But it can also be useful for other people :-)
+The document is cheat sheet of CRUX installation on the laptop for me. But it can also be useful for other people :-)
 
 ---
 
