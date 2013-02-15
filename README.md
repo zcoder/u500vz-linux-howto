@@ -40,6 +40,7 @@ Audio:       Not Tested
 USB ports:   Works (as 2.0, 3.0 Not Tested)
 HDMI:        Not Tested
 Mini VGA:    Not Tested
+FN keys:     Not Tested
 </pre>
 
 Preparation
