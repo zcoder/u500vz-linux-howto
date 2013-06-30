@@ -1,0 +1,7 @@
+Для управления подсветкой клавиатуры (Kubuntu 12.04)
+
+1) cp rc.local /etc/rc.local # change username
+2) cp -r .keyboard-led ~/ 
+3) Настройте горячие клавиши на вызов скриптов up и down
+
+# для гуру: /sys/class/leds/asus::kbd_backlight/brightness
