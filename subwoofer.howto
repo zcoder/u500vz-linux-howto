@@ -1,0 +1,90 @@
+Вариант решения на англоязычном форуме
+ (Нажмите, чтобы показать/скрыть)
+Zii, got the subwoofer working in Linux for u500vz UX51VZA . Kubuntu 12.10, kernel 3.5.0-18-generic #29-Ubuntu SMP . Also had to use the latest alsa-daily modules
+
+So the following steps need to be performed.
+
+# apt-add-repository ppa:ubuntu-audio-dev/alsa-daily
+# apt-get update
+# apt-get install alsa-hda-dkms
+
+add to /etc/modprobe.d/alsa-base.conf
+options snd-hda-intel model=asus-mode4
+
+add to /usr/share/pulseaudio/alsa-mixer/profile-sets/extra-hdmi.conf
+[Mapping analog-surround-21]
+device-strings = surround40:%f
+channel-map = front-left,front-right,lfe,lfe
+paths-output = analog-output analog-output-speaker
+priority = 7
+direction = output
+
+make sure lfe-mixing is enabled in /etc/pulse/daemon.conf
+enable-lfe-remixing = yes
+
+# killall pulseaudio
+# rmmod snd-hda-intel
+# modprobe snd-hda-intel
+# /usr/bin/pulseaudio --start --log-target=syslog
+
+Open
+# pavucontrol
+and set Built-in audio profile to "Analogue Surround 2.1 Output + Analogue Stereo Input"
+
+that's it. you can test it with 
+# speaker-test -c6 -t wav -D pulse
+
+Попытаюсь перевести
+ (Нажмите, чтобы показать/скрыть)
+Zii, добился работы сабвуфера для u500vz UX51VZA . Kubuntu 12.10, kernel 3.5.0-18-generic #29-Ubuntu SMP . Кроме того необходимо использовать самый свежий alsa-daily modules
+
+Необходимо выполнить следующие шаги:
+в терминале
+Код: [Выделить]
+sudo apt-add-repository ppa:ubuntu-audio-dev/alsa-daily
+Код: [Выделить]
+sudo apt-get update
+Код: [Выделить]
+sudo apt-get install alsa-hda-dkms
+
+Код: [Выделить]
+sudo gedit /etc/modprobe.d/alsa-base.conf
+В конце файла добавить сроку:
+Цитировать
+options snd-hda-intel model=asus-mode4
+
+Код: [Выделить]
+sudo gedit /usr/share/pulseaudio/alsa-mixer/profile-sets/extra-hdmi.conf
+Добавить следующие строки:
+Цитировать
+[Mapping analog-surround-21]
+device-strings = surround40:%f
+channel-map = front-left,front-right,lfe,lfe
+paths-output = analog-output analog-output-speaker
+priority = 7
+direction = output
+
+Убедитеь, что  lfe-mixing включено в файле /etc/pulse/daemon.conf
+Код: [Выделить]
+sudo gedit /etc/pulse/daemon.conf
+Цитировать
+enable-lfe-remixing = yes
+
+Далее в терминале:
+Код: [Выделить]
+killall pulseaudio
+Код: [Выделить]
+rmmod snd-hda-intel
+Код: [Выделить]
+modprobe snd-hda-intel
+Код: [Выделить]
+/usr/bin/pulseaudio --start --log-target=syslog
+
+Открыть в терминале
+Код: [Выделить]
+pavucontrol
+И установить аналоговый аудио-профиль на "Analogue Surround 2.1 Output + Analogue Stereo Input" (Аналоговый окружающее 2.1 Выходной + Аналоговый стерео вход)
+
+Проверить как всё работает можно в терминале: 
+Код: [Выделить]
+speaker-test -c6 -t wav -D pulse
