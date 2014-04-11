@@ -258,3 +258,4 @@ stop)
 [Patch](i915.patch) for 'drm:__gen6_gt_force_wake_mt_get' error. Tested on linux 3.7.8.
 
 
+https://wiki.archlinux.org/index.php/Touchpad_Synaptics#Buttonless_TouchPads_.28aka_ClickPads.29
